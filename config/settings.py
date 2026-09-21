@@ -150,7 +150,7 @@ SIMPLE_JWT = {
 }
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Your Project API",
+    "TITLE": "Markdown Note",
     "SCHEMA_PATH_PREFIX": r"^/api/v[0-9]/",
     "SCHEMA_PATH_PREFIX_TRIM": True,
 }
