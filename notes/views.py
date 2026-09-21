@@ -9,6 +9,15 @@ from rest_framework.views import APIView
 from notes.models import Note
 from notes.serializers import NoteSerializer
 
+_grammar_tool = None
+
+
+def get_grammar_tool():
+    global _grammar_tool
+    if _grammar_tool is None:
+        _grammar_tool = language_tool_python.LanguageTool("en-US")
+    return _grammar_tool
+
 
 class NoteListCreateView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -46,8 +55,7 @@ class GrammarCheckView(APIView):
                 {"error": "No text provided"}, status=status.HTTP_400_BAD_REQUEST
             )
 
-        tool = language_tool_python.LanguageTool("en-US")
-        matches = tool.check(text)
+        matches = get_grammar_tool().check(text)
 
         errors = [
             {
