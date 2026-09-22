@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from notes.models import Note
-from notes.serializers import NoteSerializer
+from notes.serializers import GrammarCheckSerializer, NoteSerializer
 
 _grammar_tool = None
 
@@ -47,8 +47,11 @@ class NoteListCreateView(generics.ListCreateAPIView):
         return response
 
 
-class GrammarCheckView(APIView):
-    def post(self, request, *args, **kwargs):
+class GrammarCheckView(generics.CreateAPIView):
+    permission_classes = [permissions.AllowAny]
+    serializer_class = GrammarCheckSerializer
+
+    def create(self, request, *args, **kwargs):
         text = request.data.get("text", "")
         if not text:
             return Response(

@@ -152,7 +152,7 @@ SIMPLE_JWT = {
 SPECTACULAR_SETTINGS = {
     "TITLE": "Markdown Note",
     "SCHEMA_PATH_PREFIX": r"^/api/v[0-9]/",
-    "SCHEMA_PATH_PREFIX_TRIM": True,
+    "SCHEMA_PATH_PREFIX_TRIM": False,
 }
 
 AUTH_USER_MODEL = "authentication.User"
